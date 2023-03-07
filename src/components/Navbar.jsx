@@ -20,11 +20,11 @@ import logoText from "../assets/logo-text.png";
 export const Navbar = () => {
   return (
     <div className="navbar bg-base-100 px-20">
-      <div className="navbar-start">
+      <div className="flex-none">
         <img src={logoText} alt="logo-text" className="w-36" />
       </div>
-      <div className="flex">
-        <ul className="menu menu-horizontal px-1 space-x-10  ">
+      <div className="justify-end navbar flex-initial ">
+        <ul className="menu menu-horizontal px-10 space-x-8  ">
           {/* FITUR */}
           <li tabIndex={0}>
             <p className="hover:bg-inherit hover:text-slate-400">
