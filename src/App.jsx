@@ -33,13 +33,23 @@ function App() {
                 <input
                   type="text"
                   placeholder="Cari aset di pintu..."
-                  className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-100 focus:bg-white focus:border-white"
+                  className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-100 focus:bg-gray-100 focus:border-gray-500"
                 />
               </div>
             </form>
           </div>
         </div>
-        <TopMovers />
+        <div className="pt-4">
+          <h2 className="font-bold text-2xl">🔥 Top Movers (24Jam)</h2>
+        </div>
+        <div className="flex space-x-5">
+          <TopMovers />
+          <TopMovers />
+          <TopMovers />
+          <TopMovers />
+          <TopMovers />
+          <TopMovers />
+        </div>
       </div>
     </Layout>
   );
