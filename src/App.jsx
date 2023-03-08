@@ -3,6 +3,7 @@ import { Navbar } from "./components/Navbar";
 import { FiSearch } from "react-icons/fi";
 import TopMovers from "./components/TopMovers";
 import { Category } from "./components/Category";
+import { TableContent } from "./components/TableContent";
 function App() {
   return (
     <Layout>
@@ -52,6 +53,27 @@ function App() {
           <TopMovers />
         </div>
         <Category />
+        <div className="overflow-x-auto pt-5 ">
+          <table className="table  w-full ">
+            {/* head */}
+            <thead className="">
+              <tr className="text-gray-500 ">
+                <th className="text-base text-center">CRYPTO</th>
+                <th className="text-base">HARGA</th>
+                <th className="text-base">24 JAM</th>
+                <th className="text-base">1 MNG</th>
+                <th className="text-base">1 BLN</th>
+                <th className="text-base">1 THN</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* row 1 */}
+              <TableContent />
+              <TableContent />
+              <TableContent />
+            </tbody>
+          </table>
+        </div>
       </div>
     </Layout>
   );
