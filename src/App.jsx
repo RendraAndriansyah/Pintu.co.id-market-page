@@ -2,6 +2,7 @@ import { Layout } from "./components/Layout";
 import { Navbar } from "./components/Navbar";
 import { FiSearch } from "react-icons/fi";
 import TopMovers from "./components/TopMovers";
+import { Category } from "./components/Category";
 function App() {
   return (
     <Layout>
@@ -15,7 +16,7 @@ function App() {
           {/* INPUT SEARCH  */}
           <div className="flex w-[24rem] ">
             <form className="max-w-sm px-4">
-              <div className="relative">
+              <div className="relative ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 left-3"
@@ -42,7 +43,7 @@ function App() {
         <div className="pt-4">
           <h2 className="font-bold text-2xl">🔥 Top Movers (24Jam)</h2>
         </div>
-        <div className="flex space-x-5">
+        <div className="flex space-x-5  overflow-auto">
           <TopMovers />
           <TopMovers />
           <TopMovers />
@@ -50,6 +51,7 @@ function App() {
           <TopMovers />
           <TopMovers />
         </div>
+        <Category />
       </div>
     </Layout>
   );

@@ -24,7 +24,7 @@ export const Navbar = () => {
         <img src={logoText} alt="logo-text" className="w-36" />
       </div>
       <div className="justify-end navbar flex-initial ">
-        <ul className="menu menu-horizontal px-10 space-x-8  ">
+        <ul className="menu menu-horizontal px-10 space-x-8 z-10  ">
           {/* FITUR */}
           <li tabIndex={0}>
             <p className="hover:bg-inherit hover:text-slate-400">
@@ -35,7 +35,7 @@ export const Navbar = () => {
             </p>
 
             {/* SUB-MENU FITUR */}
-            <ul className="p-2 border shadow-sm border-t-0 font-bold ">
+            <ul className="p-2 border shadow-sm border-t-0 font-bold bg-white ">
               <li>
                 <div className="hover:bg-slate-100">
                   <FaChartLine size={20} />
@@ -94,7 +94,7 @@ export const Navbar = () => {
             <a className="hover:bg-inherit hover:text-slate-400">Edukasi</a>
 
             {/* SUB-MENU EDUKASI */}
-            <ul className="p-2 border shadow-sm border-t-0 font-bold ">
+            <ul className="p-2 border shadow-sm border-t-0 font-bold bg-white">
               <li>
                 <div className="hover:bg-slate-100">
                   <img src={logo} alt="logo" className="w-6" />
@@ -138,7 +138,7 @@ export const Navbar = () => {
           <li tabIndex={0}>
             <a className="hover:bg-inherit hover:text-slate-400">Ikuti Kami</a>
             {/* SUB-MENU IKUTI KAMI */}
-            <ul className="p-2 border shadow-sm border-t-0 font-bold ">
+            <ul className="p-2 border shadow-sm border-t-0 font-bold bg-white">
               <li>
                 <div className="hover:bg-slate-100">
                   <TbBrandTelegram size={25} />
@@ -203,7 +203,7 @@ export const Navbar = () => {
             <a className="hover:bg-inherit hover:text-slate-400">Blog & News</a>
 
             {/* SUB-MENU BLOG & NEWS */}
-            <ul className="p-2 border shadow-sm border-t-0 font-bold ">
+            <ul className="p-2 border shadow-sm border-t-0 font-bold bg-white">
               <li>
                 <div className="hover:bg-slate-100">
                   <AiOutlineProfile size={25} />
@@ -248,7 +248,7 @@ export const Navbar = () => {
             <p className="hover:bg-inherit hover:text-slate-400">Karier</p>
 
             {/* SUB-MENU FITUR */}
-            <ul className="p-2 border shadow-sm border-t-0 font-bold right-1 ">
+            <ul className="p-2 border shadow-sm border-t-0 font-bold right-1 bg-white">
               <li>
                 <div className="hover:bg-slate-100">
                   <RiSuitcaseFill size={20} />
