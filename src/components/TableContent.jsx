@@ -4,7 +4,7 @@ import ptuToken from "../assets/ptu-token.png";
 export const TableContent = () => {
   return (
     <>
-      <tr className="border-l border-r border-b rounded-md">
+      <tr className="border-l border-r border-b rounded-md hover:cursor-pointer">
         <td className="rounded-2xl">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">

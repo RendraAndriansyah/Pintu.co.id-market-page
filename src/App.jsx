@@ -67,12 +67,27 @@ function App() {
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
+              {/* row */}
               <TableContent />
               <TableContent />
               <TableContent />
             </tbody>
           </table>
+        </div>
+        <div className="w-full border rounded-lg h-auto my-5 p-5">
+          <h2 className="font-medium text-lg py-2">Tentang Cryptocurrency</h2>
+          <p className="text-zinc-500 pb-8">
+            Cryptocurrency adalah aset mata uang digital yang diamankan menggunakan metode
+            cryptography diatas open database yang disebut blockchain. Terdapat 2 jenis
+            crypto, yaitu coin dan token. Coin adalah cryptocurrency yang berdiri diatas
+            blockchain-nya sendiri dengan contoh bitcoin dan ethereum, sedangkan token
+            adalah cryptocurrency yang “menumpang” diatas blockchain dari native aset
+            lain.
+          </p>
+
+          <button className="border rounded-full py-2 px-8 border-slate-500 hover:bg-slate-100 hover:transition-all hover:border-white">
+            Pelajari lebih lanjut <span className="font-bold text-xl"> → </span>
+          </button>
         </div>
       </div>
     </Layout>
