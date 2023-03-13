@@ -3,8 +3,8 @@ import { Layout } from "./components/Layout";
 import { Navbar } from "./components/Navbar";
 import { TableContent } from "./components/TableContent";
 import TopMovers from "./components/TopMovers";
-import BrandAmbassador from "./assets/brand-ambassador.png";
 import { BannerBottom } from "./components/BannerBottom";
+import { Footer } from "./components/Footer";
 function App() {
   return (
     <Layout>
@@ -271,6 +271,7 @@ function App() {
         </div>
         {/* BANNER BOTTOM */}
         <BannerBottom />
+        <Footer />
       </div>
     </Layout>
   );
