@@ -159,7 +159,7 @@ function App() {
 
           {/* TABLE LIST */}
           <div className="overflow-x-auto pt-5 ">
-            <table className="table  w-full ">
+            <table className="table w-full ">
               {/* head */}
               <thead className="">
                 <tr className="text-gray-500 ">

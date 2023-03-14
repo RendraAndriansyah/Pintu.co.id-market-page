@@ -19,16 +19,17 @@ export const TableContent = ({
   };
   return (
     <>
-      <td className="rounded-2xl">
-        <div className="flex justify-between items-center ">
-          <div className="flex items-center space-x-4 ">
-            <img src={logo} alt="ptu-token" className="w-10 " />
-            <span className="font-medium text-lg">{name}</span>
+      <td className="flex items-center justify-between">
+        <div className="flex items-center space-x-2 justify-between">
+          <img src={logo} alt="ptu-token" className="w-8 " />
+          <div className="">
+            <p className="font-medium">{name}</p>
+            <p className="text-zinc-400 lg:hidden ">{currencyGroup}</p>
           </div>
-          <span className="text-zinc-400 ">{currencyGroup}</span>
         </div>
+        <p className="text-zinc-400 hidden lg:block">{currencyGroup}</p>
       </td>
-      <td className="font-medium text-base text-lg">{handleLatestPrice()}</td>
+      <td className="font-semibold text-base">{handleLatestPrice()}</td>
       <td>
         <div className={dailyPrice <= 0 ? "text-red-500" : "text-green-500"}>
           <span className="text-lg pr-1">{dailyPrice <= 0 ? "▼" : "▲"}</span>
