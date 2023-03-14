@@ -1,6 +1,6 @@
 import React from "react";
 import ptu from "../assets/ptu-token.png";
-const TopMovers = ({ price, movers, name, logo }) => {
+const TopMovers = ({ price, movers, name, logo, keys }) => {
   const handleLatestPrice = () => {
     return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" })
       .format(price)
@@ -8,7 +8,7 @@ const TopMovers = ({ price, movers, name, logo }) => {
   };
 
   return (
-    <div className="min-w-fit pt-4  hover:bg-slate-200 rounded-lg ">
+    <div className="min-w-fit pt-4  hover:bg-slate-200 rounded-lg " key={keys}>
       <div className="p-2 ">
         <div className="flex items-center">
           <img src={logo} alt="ptu-token" width={40} />

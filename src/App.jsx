@@ -13,16 +13,8 @@ const urlPriceChanges = "https://api.pintu.co.id/v2/trade/price-changes";
 function App() {
   const [supCurrent, setSupCurrent] = useState([]);
   const [priceChange, setPriceChange] = useState([]);
-  const [topMovers, setTopMovers] = useState([]);
-
-  const getTopMovers = async (price) => {
-    return setTopMovers(
-      await price
-        .map((x) => x)
-        .sort((a, b) => b.day - a.day)
-        .slice(0, 6)
-    );
-  };
+  const [showInput, setShowInput] = useState(true);
+  const [search, setSearch] = useState("");
 
   const getCurrencies = () => {
     axios
@@ -63,9 +55,9 @@ function App() {
             </div>
 
             {/* INPUT SEARCH  */}
-            <div className="flex w-[24rem] ">
-              <form className="max-w-sm px-4">
-                <div className="relative ">
+            <div className="flex w-[24rem] relative  ">
+              <form className="max-w-sm px-4 focus-visible:z-20">
+                <div className="flex relative ">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 left-3"
@@ -83,10 +75,41 @@ function App() {
                   <input
                     type="text"
                     placeholder="Cari aset di pintu..."
-                    className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-100 focus:bg-gray-100 focus:border-gray-500"
+                    className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-100 focus:bg-gray-100 focus:border-gray-200 focus:border-2"
+                    onChange={(e) => setSearch(e.target.value)}
+                    onClick={() => setShowInput(!showInput)}
                   />
+                  <div>
+                    <p
+                      className="cursor-pointer absolute right-2 top-1 w-8 text-xl font-medium rounded-full p-2 text-gray-500"
+                      onClick={() => setShowInput(true)}
+                      hidden={showInput}
+                    >
+                      X
+                    </p>
+                  </div>
                 </div>
               </form>
+              <div
+                className="bg-white overflow-auto z-10 top-12 left-4 absolute h-96 w-auto rounded shadow-sm shadow-gray-400"
+                hidden={showInput}
+              >
+                {supCurrent.map((item) => {
+                  return (
+                    <div key={item.name}>
+                      <div className="flex justify-between" key={item.logo}>
+                        <div className="flex space-x-2 p-2 items-center">
+                          <img src={item.logo} alt="icon-token" className="w-10" />
+                          <p className="font-medium text-lg">{item.name}</p>
+                        </div>
+                        <div className="p-2 items-center flex font-medium text-zinc-400">
+                          {item.currencyGroup}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
           <div className="pt-4">
@@ -96,18 +119,19 @@ function App() {
             {priceChange
               .sort((a, b) => b.day - a.day)
               .slice(0, 6)
-              .map((price) => {
+              .map((price, i) => {
                 return (
-                  <>
+                  <div key={i}>
                     {supCurrent
                       .filter(
                         (current) =>
                           current.currencyGroup ===
                           price.pair.slice(0, price.pair.indexOf("/")).toUpperCase()
                       )
-                      .map((item) => {
+                      .map((item, i) => {
                         return (
                           <TopMovers
+                            key={item.name}
                             price={price.latestPrice}
                             movers={price.day}
                             logo={item.logo}
@@ -115,7 +139,7 @@ function App() {
                           />
                         );
                       })}
-                  </>
+                  </div>
                 );
               })}
           </div>
@@ -151,7 +175,7 @@ function App() {
                         .map((price) => {
                           return (
                             <TableContent
-                              key={item.color}
+                              key={item.name}
                               logo={item.logo}
                               name={item.name}
                               currencyGroup={item.currencyGroup}

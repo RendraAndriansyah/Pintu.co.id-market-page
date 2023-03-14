@@ -10,6 +10,7 @@ export const TableContent = ({
   weeklyPrice,
   monthlyPrice,
   yearlyPrice,
+  keys,
 }) => {
   const handleLatestPrice = () => {
     return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" })
