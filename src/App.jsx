@@ -13,6 +13,16 @@ const urlPriceChanges = "https://api.pintu.co.id/v2/trade/price-changes";
 function App() {
   const [supCurrent, setSupCurrent] = useState([]);
   const [priceChange, setPriceChange] = useState([]);
+  const [topMovers, setTopMovers] = useState([]);
+
+  const getTopMovers = async (price) => {
+    return setTopMovers(
+      await price
+        .map((x) => x)
+        .sort((a, b) => b.day - a.day)
+        .slice(0, 6)
+    );
+  };
 
   const getCurrencies = () => {
     axios
@@ -37,9 +47,9 @@ function App() {
       });
   };
   useEffect(() => {
-    getCurrencies();
     setInterval(() => {
       getPriceChanges();
+      getCurrencies();
     }, 1800);
   }, []);
   {
@@ -83,12 +93,31 @@ function App() {
             <h2 className="font-bold text-2xl">🔥 Top Movers (24Jam)</h2>
           </div>
           <div className="grid grid-cols-6 space-x-5 overflow-auto">
-            <TopMovers />
-            <TopMovers />
-            <TopMovers />
-            <TopMovers />
-            <TopMovers />
-            <TopMovers />
+            {priceChange
+              .sort((a, b) => b.day - a.day)
+              .slice(0, 6)
+              .map((price) => {
+                return (
+                  <>
+                    {supCurrent
+                      .filter(
+                        (current) =>
+                          current.currencyGroup ===
+                          price.pair.slice(0, price.pair.indexOf("/")).toUpperCase()
+                      )
+                      .map((item) => {
+                        return (
+                          <TopMovers
+                            price={price.latestPrice}
+                            movers={price.day}
+                            logo={item.logo}
+                            name={item.name}
+                          />
+                        );
+                      })}
+                  </>
+                );
+              })}
           </div>
           <Category />
           <div className="overflow-x-auto pt-5 ">
