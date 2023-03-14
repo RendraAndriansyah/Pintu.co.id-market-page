@@ -22,13 +22,13 @@ export const TableContent = ({
       <td className="rounded-2xl">
         <div className="flex justify-between items-center ">
           <div className="flex items-center space-x-4 ">
-            <img src={logo} alt="ptu-token" className="w-8 " />
-            <span className="font-medium">{name}</span>
+            <img src={logo} alt="ptu-token" className="w-10 " />
+            <span className="font-medium text-lg">{name}</span>
           </div>
           <span className="text-zinc-400 ">{currencyGroup}</span>
         </div>
       </td>
-      <td className="font-semibold text-base">{handleLatestPrice()}</td>
+      <td className="font-medium text-base text-lg">{handleLatestPrice()}</td>
       <td>
         <div className={dailyPrice <= 0 ? "text-red-500" : "text-green-500"}>
           <span className="text-lg pr-1">{dailyPrice <= 0 ? "▼" : "▲"}</span>

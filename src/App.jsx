@@ -15,6 +15,7 @@ function App() {
   const [priceChange, setPriceChange] = useState([]);
   const [showInput, setShowInput] = useState(true);
   const [search, setSearch] = useState("");
+  // console.log({ search });
 
   const getCurrencies = () => {
     axios
@@ -56,7 +57,10 @@ function App() {
 
             {/* INPUT SEARCH  */}
             <div className="flex w-[24rem] relative  ">
-              <form className="max-w-sm px-4 focus-visible:z-20">
+              <form
+                className="max-w-sm px-4 focus-visible:z-20"
+                onChange={(e) => setSearch(e.target.value)}
+              >
                 <div className="flex relative ">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +80,6 @@ function App() {
                     type="text"
                     placeholder="Cari aset di pintu..."
                     className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-100 focus:bg-gray-100 focus:border-gray-200 focus:border-2"
-                    onChange={(e) => setSearch(e.target.value)}
                     onClick={() => setShowInput(!showInput)}
                   />
                   <div>
@@ -91,30 +94,38 @@ function App() {
                 </div>
               </form>
               <div
-                className="bg-white overflow-auto z-10 top-12 left-4 absolute h-96 w-auto rounded shadow-sm shadow-gray-400"
+                className="bg-white overflow-auto z-10 top-12 left-4 absolute h-96 w-5/6 rounded shadow-sm shadow-gray-400"
                 hidden={showInput}
               >
-                {supCurrent.map((item) => {
-                  return (
-                    <div key={item.name}>
-                      <div className="flex justify-between" key={item.logo}>
-                        <div className="flex space-x-2 p-2 items-center">
-                          <img src={item.logo} alt="icon-token" className="w-10" />
-                          <p className="font-medium text-lg">{item.name}</p>
-                        </div>
-                        <div className="p-2 items-center flex font-medium text-zinc-400">
-                          {item.currencyGroup}
+                {supCurrent
+                  .filter((item) =>
+                    search.toLowerCase() === ""
+                      ? item
+                      : item.name.toLowerCase().includes(search)
+                  )
+                  .map((item) => {
+                    return (
+                      <div key={item.name}>
+                        <div className="flex justify-between" key={item.logo}>
+                          <div className="flex space-x-2 p-2 items-center">
+                            <img src={item.logo} alt="icon-token" className="w-10" />
+                            <p className="font-medium text-lg">{item.name}</p>
+                          </div>
+                          <div className="p-2 items-center flex font-medium text-zinc-400">
+                            {item.currencyGroup}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
               </div>
             </div>
           </div>
           <div className="pt-4">
             <h2 className="font-bold text-2xl">🔥 Top Movers (24Jam)</h2>
           </div>
+
+          {/* TOP MOVERS */}
           <div className="grid grid-cols-6 space-x-5 overflow-auto">
             {priceChange
               .sort((a, b) => b.day - a.day)
@@ -143,7 +154,10 @@ function App() {
                 );
               })}
           </div>
+
           <Category />
+
+          {/* TABLE LIST */}
           <div className="overflow-x-auto pt-5 ">
             <table className="table  w-full ">
               {/* head */}
