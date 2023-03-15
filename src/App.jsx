@@ -39,17 +39,24 @@ function App() {
       });
   };
 
+  // converting number to rupiah format
+  const handleLatestPrice = (price) => {
+    return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" })
+      .format(price)
+      .slice(0, -3);
+  };
+
   useEffect(() => {
     setInterval(() => {
       getPriceChanges();
       getCurrencies();
-    }, 1800);
+    }, 2000);
   }, []);
 
   return (
     <Layout>
       <Navbar />
-      <div className="px-24 py-10">
+      <div className="px-8 py-2 lg:px-24 md:py-10">
         <div className="flex flex-row justify-between ">
           <div className="flex w-[36em]">
             <p className="font-semibold text-3xl">Harga Crypto dalam rupiah hari ini</p>
@@ -126,9 +133,13 @@ function App() {
         </div>
 
         {/* TOP MOVERS */}
-        <div className="grid grid-cols-6 space-x-5 overflow-auto">
+        <div className="grid grid-flow-col space-x-5 overflow-auto ">
           {priceChange
-            .sort((a, b) => b.day - a.day)
+            .sort((a, b) =>
+              Math.max(priceChange.day) >= Math.min(priceChange.day)
+                ? b.day - a.day
+                : a.day - b.day
+            )
             .slice(0, 6)
             .map((price, i) => {
               return (
@@ -139,11 +150,11 @@ function App() {
                         current.currencyGroup ===
                         price.pair.slice(0, price.pair.indexOf("/")).toUpperCase()
                     )
-                    .map((item, i) => {
+                    .map((item) => {
                       return (
                         <TopMovers
                           key={item.name}
-                          price={price.latestPrice}
+                          price={handleLatestPrice(price.latestPrice)}
                           movers={price.day}
                           logo={item.logo}
                           name={item.name}

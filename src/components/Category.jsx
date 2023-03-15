@@ -7,7 +7,7 @@ import { TbArrowsRightLeft, TbReportMoney } from "react-icons/tb";
 
 export const Category = () => {
   return (
-    <div className="grid grid-flow-col place-content-start gap-5 pt-5">
+    <div className="flex place-content-start gap-5 pt-5 overflow-auto">
       {/* TERBARU */}
       <div className="flex items-center bg-blue-50 rounded-md ">
         <div className="flex text-blue-600 p-2">
@@ -17,8 +17,10 @@ export const Category = () => {
       </div>
       {/* DeFi */}
       <div className="flex items-center bg-blue-50 rounded-md">
-        <div className="flex text-blue-600 p-2">
-          <BsBank size={20} />
+        <div className="flex text-blue-600 p-2 items-center">
+          <p>
+            <BsBank size={20} />
+          </p>
           <p className="text-sm font-medium pl-1">DeFi</p>
         </div>
       </div>
