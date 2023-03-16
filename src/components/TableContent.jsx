@@ -1,5 +1,4 @@
 import React from "react";
-import ptuToken from "../assets/ptu-token.png";
 
 export const TableContent = ({
   name,
@@ -10,7 +9,6 @@ export const TableContent = ({
   weeklyPrice,
   monthlyPrice,
   yearlyPrice,
-  keys,
 }) => {
   return (
     <>

@@ -233,8 +233,8 @@ function App() {
             Pelajari lebih lanjut <span className="font-bold text-xl"> → </span>
           </button>
         </div>
-        {/* learn more */}
-        <div className="grid grid-cols-3 gap-10 pt-10">
+        {/* PELAJARI LEBIH LANJUT */}
+        <div className="grid grid-flow-row space-y-10 ;g:grid-cols-3 gap-10 pt-10">
           {/* 1 */}
           <div className="space-y-5">
             <svg viewBox="0 0 172 122" xmlns="http://www.w3.org/2000/svg" height="80">
