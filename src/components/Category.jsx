@@ -47,9 +47,11 @@ export const Category = () => {
       </div>
       {/* layer-1 */}
       <div className="flex items-center bg-blue-50 rounded-md">
-        <div className="flex text-blue-600 p-2">
-          <BsLayersHalf size={20} />
-          <p className="text-sm font-medium pl-1">Layer-1</p>
+        <div className="flex items-center text-blue-600 p-2">
+          <div>
+            <BsLayersHalf size={20} />
+          </div>
+          <p className="text-sm font-medium pl-1">Layer1</p>
         </div>
       </div>
       {/* Infrastructure */}
@@ -62,21 +64,27 @@ export const Category = () => {
       {/* Lending */}
       <div className="flex items-center bg-blue-50 rounded-md">
         <div className="flex text-blue-600 p-2">
-          <TbReportMoney size={20} />
+          <div>
+            <TbReportMoney size={20} />
+          </div>
           <p className="text-sm font-medium pl-1">Lending</p>
         </div>
       </div>
       {/* Layer-2 */}
       <div className="flex items-center bg-blue-50 rounded-md">
-        <div className="flex text-blue-600 p-2">
-          <BsLayersFill size={20} />
-          <p className="text-sm font-medium pl-1">Layer-2</p>
+        <div className="flex items-center space-x-1 text-blue-600 p-2">
+          <div>
+            <BsLayersFill size={20} />
+          </div>
+          <span className="text-sm font-medium pl-1">Layer2</span>
         </div>
       </div>
       {/* Ecosistem Stablecoin */}
       <div className="flex items-center bg-blue-50 w-fit rounded-md">
-        <div className="flex text-blue-600 p-2">
-          <RiScalesFill size={20} />
+        <div className="flex items-center space-x-1 text-blue-600 p-2">
+          <div>
+            <RiScalesFill size={20} />
+          </div>
           <p className="text-sm font-medium pl-1">Ecosistem Stablecoin </p>
         </div>
       </div>

@@ -56,19 +56,21 @@ function App() {
   return (
     <Layout>
       <Navbar />
-      <div className="px-8 py-2 lg:px-24 md:py-10">
-        <div className="flex flex-row justify-between ">
-          <div className="flex w-[36em]">
-            <p className="font-semibold text-3xl">Harga Crypto dalam rupiah hari ini</p>
+      <div className="px-2 py-2 lg:px-24 md:py-10">
+        <div className="flex flex-col lg:flex-row lg:justify-between">
+          <div className="">
+            <p className="font-normal lg:font-medium text-[1.3rem] lg:text-[2rem] pl-4 pb-2">
+              Harga Crypto dalam rupiah hari ini
+            </p>
           </div>
 
           {/* INPUT SEARCH  */}
-          <div className="flex w-[24rem] relative  ">
+          <div className="relative  ">
             <form
               className="max-w-sm px-4 focus-visible:z-20"
               onChange={(e) => setSearch(e.target.value)}
             >
-              <div className="flex relative ">
+              <div className=" relative ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 left-3"
@@ -101,7 +103,7 @@ function App() {
               </div>
             </form>
             <div
-              className="bg-white overflow-auto z-10 top-12 left-4 absolute h-96 w-5/6 rounded shadow-sm shadow-gray-400"
+              className="bg-white overflow-auto z-10 top-12 left-4 absolute w-[91.5%] h-96 rounded shadow-sm shadow-gray-400"
               hidden={showInput}
             >
               {supCurrent
@@ -135,11 +137,7 @@ function App() {
         {/* TOP MOVERS */}
         <div className="grid grid-flow-col space-x-5 overflow-auto ">
           {priceChange
-            .sort((a, b) =>
-              Math.max(priceChange.day) >= Math.min(priceChange.day)
-                ? b.day - a.day
-                : a.day - b.day
-            )
+            .sort((asc, desc) => Math.abs(desc.day) - Math.abs(asc.day))
             .slice(0, 6)
             .map((price, i) => {
               return (
@@ -170,18 +168,19 @@ function App() {
 
         {/* TABLE LIST */}
         <div className="overflow-x-auto pt-5 ">
-          <table className="table w-full ">
-            {/* head */}
+          <table className=" table  w-full z-0">
+            {/* head desktop*/}
             <thead className="">
-              <tr className="text-gray-500 ">
-                <th className="text-base text-center">CRYPTO</th>
-                <th className="text-base">HARGA</th>
-                <th className="text-base">24 JAM</th>
-                <th className="text-base">1 MNG</th>
-                <th className="text-base">1 BLN</th>
-                <th className="text-base">1 THN</th>
+              <tr className="text-gray-500">
+                <th className="text-base lg:text-center  ">CRYPTO</th>
+                <th className="text-base hidden lg:table-cell w-48 ">HARGA</th>
+                <th className="text-base text-end lg:text-center lg:w-48">24 JAM</th>
+                <th className="text-base hidden lg:table-cell w-48">1 MNG</th>
+                <th className="text-base hidden lg:table-cell w-48">1 BLN</th>
+                <th className="text-base hidden lg:table-cell w-48">1 THN</th>
               </tr>
             </thead>
+
             <tbody>
               {/* row */}
               {supCurrent.map((item) => {
@@ -203,7 +202,7 @@ function App() {
                             logo={item.logo}
                             name={item.name}
                             currencyGroup={item.currencyGroup}
-                            latestPrice={price.latestPrice}
+                            latestPrice={handleLatestPrice(price.latestPrice)}
                             dailyPrice={price.day}
                             weeklyPrice={price.week}
                             monthlyPrice={price.month}

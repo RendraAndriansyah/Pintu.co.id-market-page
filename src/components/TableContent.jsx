@@ -12,11 +12,6 @@ export const TableContent = ({
   yearlyPrice,
   keys,
 }) => {
-  const handleLatestPrice = () => {
-    return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" })
-      .format(latestPrice)
-      .slice(0, -3);
-  };
   return (
     <>
       <td className="flex items-center justify-between">
@@ -27,29 +22,33 @@ export const TableContent = ({
             <p className="text-zinc-400 lg:hidden ">{currencyGroup}</p>
           </div>
         </div>
-        <p className="text-zinc-400 hidden lg:block">{currencyGroup}</p>
+        <p className="text-zinc-400  hidden lg:inline ">{currencyGroup}</p>
       </td>
-      <td className="font-semibold text-base">{handleLatestPrice()}</td>
+      <td className="font-semibold text-base hidden lg:table-cell  ">{latestPrice}</td>
       <td>
         <div className={dailyPrice <= 0 ? "text-red-500" : "text-green-500"}>
-          <span className="text-lg pr-1">{dailyPrice <= 0 ? "▼" : "▲"}</span>
-          <span className="font-medium">{`${dailyPrice}%`}</span>
+          <div className="text-end lg:text-center">
+            <p className="font-semibold text-base text-slate-900 lg:hidden">
+              {latestPrice}
+            </p>
+            <span className="text-lg pr-1">{dailyPrice <= 0 ? "▼" : "▲"}</span>
+            <span className="font-medium">{`${dailyPrice}%`}</span>
+          </div>
         </div>
       </td>
-      <td>
+      <td className="hidden lg:table-cell">
         <div className={weeklyPrice <= 0 ? "text-red-500" : "text-green-500"}>
           <span className="text-lg pr-1">{weeklyPrice <= 0 ? "▼" : "▲"}</span>
           <span className="font-medium">{`${weeklyPrice}%`}</span>
         </div>
       </td>
-      <td>
+      <td className="hidden lg:table-cell">
         <div className={monthlyPrice <= 0 ? "text-red-500" : "text-green-500"}>
           <span className="text-lg pr-1">{monthlyPrice <= 0 ? "▼" : "▲"}</span>
           <span className="font-medium">{`${monthlyPrice}%`}</span>
         </div>
       </td>
-      <td>
-        {" "}
+      <td className="hidden lg:table-cell">
         <div className={yearlyPrice <= 0 ? "text-red-500" : "text-green-500"}>
           <span className="text-lg pr-1 font-bold">{yearlyPrice <= 0 ? "▼" : "▲"}</span>
           <span className="font-medium">{`${yearlyPrice}%`}</span>
