@@ -19,7 +19,7 @@ export const Footer = () => {
   return (
     <footer className="footer  pt-10  text-base-content">
       <div className="grid gap-y-5 lg:grid-cols-4">
-        {/* social media */}
+        {/* SOCIAL MEDIA */}
         <div>
           <div>
             <img src={logoText} alt="logo-text" className="inline w-36     " />
