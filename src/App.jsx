@@ -6,12 +6,12 @@ import TopMovers from "./components/TopMovers";
 import { BannerBottom } from "./components/BannerBottom";
 import { Footer } from "./components/Footer";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const urlSupportedCurrencies = "https://api.pintu.co.id/v2/wallet/supportedCurrencies";
 const urlPriceChanges = "https://api.pintu.co.id/v2/trade/price-changes";
 function App() {
-  const [supCurrent, setSupCurrent] = useState([]);
+  const [currency, setCurrency] = useState([]);
   const [priceChange, setPriceChange] = useState([]);
   const [showInput, setShowInput] = useState(true);
   const [search, setSearch] = useState("");
@@ -21,7 +21,7 @@ function App() {
       .get(urlSupportedCurrencies)
       .then((response) => {
         const result = response.data.payload;
-        setSupCurrent(result);
+        setCurrency(result);
       })
       .catch((err) => {
         console.log(err);
@@ -56,7 +56,7 @@ function App() {
   return (
     <Layout>
       <Navbar />
-      <div className="px-2 py-2 lg:px-24 md:py-10">
+      <div className="px-4 py-2 lg:px-24 md:py-10">
         <div className="flex flex-col lg:flex-row lg:justify-between">
           <div className="">
             <p className="font-normal lg:font-medium text-[1.3rem] lg:text-[2rem] pl-4 pb-2">
@@ -103,10 +103,10 @@ function App() {
               </div>
             </form>
             <div
-              className="bg-white overflow-auto z-10 top-12 left-4 absolute w-[91.5%] h-96 rounded shadow-sm shadow-gray-400"
+              className="bg-white overflow-auto z-10 top-12 left-4 absolute w-[22em] lg:w-[20em]  h-96 rounded shadow-sm shadow-gray-400"
               hidden={showInput}
             >
-              {supCurrent
+              {currency
                 .filter((item) =>
                   search.toLowerCase() === ""
                     ? item
@@ -142,7 +142,7 @@ function App() {
             .map((price, i) => {
               return (
                 <div key={i}>
-                  {supCurrent
+                  {currency
                     .filter(
                       (current) =>
                         current.currencyGroup ===
@@ -183,7 +183,7 @@ function App() {
 
             <tbody>
               {/* row */}
-              {supCurrent.map((item) => {
+              {currency.map((item) => {
                 return (
                   <tr
                     className="border-l border-r border-b rounded-md hover:cursor-pointer "

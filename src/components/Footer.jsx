@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   TbBrandFacebook,
   TbBrandInstagram,
@@ -11,9 +11,14 @@ import licence from "../assets/license-bappebti.png";
 import iso from "../assets/iso.png";
 
 export const Footer = () => {
+  // ~> handle expand responsive mobile
+  const [showAddress, setShowAddress] = useState(true);
+  const [showProduct, setShowProduct] = useState(true);
+  const [showCompany, setshowCompany] = useState(true);
+
   return (
     <footer className="footer  pt-10  text-base-content">
-      <div className="grid grid-cols-4">
+      <div className="grid gap-y-5 lg:grid-cols-4">
         {/* social media */}
         <div>
           <div>
@@ -35,31 +40,49 @@ export const Footer = () => {
             </div>
           </div>
         </div>
+
+        {/* ALAMAT PERUSAHAAN */}
         <div className="space-y-6">
-          <span className="font-semibold text-base text-slate-900 ">
+          <p
+            className="font-semibold text-base text-slate-900 lg:pb-5"
+            onClick={() => setShowAddress(!showAddress)}
+          >
             Alamat perusahaan
-          </span>
-          <div>
-            <p className="font-medium text-base text-slate-900">Kantor pusat</p>
-            <p className="text-slate-600 pr-20 text-sm">
-              The City Tower Lantai 27 Jalan M.H Thamrin No.81, Jakarta Pusat, DKI Jakarta
-              10310 Indonesia
-            </p>
-          </div>
-          <div>
-            <p className="font-medium text-base text-slate-900">
-              Operasional & Costumer Support
-            </p>
-            <p className="text-slate-600 pr-20 text-sm">
-              Rukan Permata Senayan Blok H1-H2 Jalan Tentara Pelajar, Jakarta Selatan DKI
-              Jakarta 12210 Indonesia
-            </p>
+          </p>
+          <div className={`space-y-4 lg:inline `} hidden={showAddress}>
+            <div className="">
+              <h1 className="font-medium text-base text-slate-900">Kantor pusat</h1>
+              <p className="text-slate-600 pr-20 text-sm">
+                The City Tower Lantai 27 Jalan M.H Thamrin No.81, Jakarta Pusat, DKI
+                Jakarta 10310 Indonesia
+              </p>
+            </div>
+
+            <div>
+              <h1 className="font-medium text-base text-slate-900">
+                Operasional & Costumer Support
+              </h1>
+              <p className="text-slate-600 pr-20 text-sm">
+                Rukan Permata Senayan Blok H1-H2 Jalan Tentara Pelajar, Jakarta Selatan
+                DKI Jakarta 12210 Indonesia
+              </p>
+            </div>
           </div>
         </div>
+
+        {/* PRODUK */}
         <div>
           <div className="space-y-6">
-            <p className="font-medium text-base text-slate-900">produk</p>
-            <div className="text-base font-light text-slate-900 space-y-5 ">
+            <p
+              className="font-semibold text-base text-slate-900 lg:pb-5"
+              onClick={() => setShowProduct(!showProduct)}
+            >
+              produk
+            </p>
+            <div
+              className="text-base font-light text-slate-900 space-y-5 lg:inline "
+              hidden={showProduct}
+            >
               <a href="#" className="block">
                 Produk
               </a>
@@ -81,10 +104,20 @@ export const Footer = () => {
             </div>
           </div>
         </div>
+
+        {/* PERUSAHAAN */}
         <div>
           <div className="space-y-6">
-            <p className="font-medium text-base text-slate-900">Perusahaan</p>
-            <div className="text-base font-light text-slate-900 space-y-5 ">
+            <p
+              className="font-semibold text-base text-slate-900 lg:pb-5"
+              onClick={() => setshowCompany(!showCompany)}
+            >
+              Perusahaan
+            </p>
+            <div
+              className="text-base font-light text-slate-900 space-y-5 lg:inline "
+              hidden={showCompany}
+            >
               <a href="#" className="block">
                 Tentang
               </a>
@@ -106,7 +139,7 @@ export const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="col-span-full w-full pt-10 space-y-2">
+        <div className="col-span-full w-full pt-10 space-y-2 text-xs lg:text-sm">
           <hr className="w-full" />
           <p className="font-semibold text-gray-400">
             © 2023 PT. Pintu Kemana Saja. All Rights Reserved.
@@ -119,15 +152,15 @@ export const Footer = () => {
             independen oleh pengguna.
           </p>
           <div className="space-x-4 text-xs">
-            <a href="#" className="underline text-gray-400">
+            <span href="#" className="underline text-gray-400">
               Syarat dan ketentuan
-            </a>
-            <a href="#" className="underline text-gray-400">
+            </span>
+            <span href="#" className="underline text-gray-400">
               Kebijakan Privasi
-            </a>
-            <a href="#" className="underline text-gray-400">
+            </span>
+            <span href="#" className="underline text-gray-400">
               Kebijakan Sistem Manajemen Keamanan Informasi dan Layanan Cloud
-            </a>
+            </span>
           </div>
         </div>
       </div>

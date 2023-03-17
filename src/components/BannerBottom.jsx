@@ -8,7 +8,7 @@ export const BannerBottom = () => {
       <div className="  text-center lg:text-start rounded-t-3xl  w-full p-8 lg:p-10 space-y-2 ">
         <h1 className="text-3xl font-semibold">Mulai Investasi Sekarang</h1>
         <p>Daftar dalam hitungan menit, langsung mulai investasi</p>
-        <button className="rounded-lg bg-white text-blue-500 text-md font-medium px-10 py-2">
+        <button className="rounded-lg bg-white text-blue-500 text-md font-medium px-20 lg:px-12 py-2">
           Download Sekarang
         </button>
       </div>
@@ -23,7 +23,7 @@ export const BannerBottom = () => {
         <img
           src={BrandAmbassadorMobile}
           alt="brand-ambassador"
-          className="h-64  lg:hidden -mt-10 "
+          className="h-64  lg:hidden -mt-5 "
         />
       </div>
     </div>
