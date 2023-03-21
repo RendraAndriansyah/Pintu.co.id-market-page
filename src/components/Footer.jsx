@@ -127,13 +127,13 @@ export const Footer = () => {
               <a href="#" className="block">
                 Karier
                 <span className="bg-blue-500 text-white font-medium ml-2 px-3 py-1 rounded-md">
-                  We're hiring!
+                  We&apos;re hiring!
                 </span>
               </a>
               <a href="#" className="block">
                 Karier Engineering{" "}
                 <span className="bg-blue-500 text-white font-medium ml-2 px-3 py-1 rounded-md">
-                  We're hiring!
+                  We&apos;re hiring!
                 </span>
               </a>
             </div>

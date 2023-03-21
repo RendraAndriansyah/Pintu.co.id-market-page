@@ -1,12 +1,12 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { BannerBottom } from "./components/BannerBottom";
 import { Category } from "./components/Category";
+import { Footer } from "./components/Footer";
 import { Layout } from "./components/Layout";
 import { Navbar } from "./components/Navbar";
 import { TableContent } from "./components/TableContent";
-import TopMovers from "./components/TopMovers";
-import { BannerBottom } from "./components/BannerBottom";
-import { Footer } from "./components/Footer";
-import axios from "axios";
-import { useEffect, useMemo, useState } from "react";
+import { TopMovers } from "./components/TopMovers";
 
 const urlSupportedCurrencies = "https://api.pintu.co.id/v2/wallet/supportedCurrencies";
 const urlPriceChanges = "https://api.pintu.co.id/v2/trade/price-changes";
@@ -15,7 +15,6 @@ function App() {
   const [priceChange, setPriceChange] = useState([]);
   const [showInput, setShowInput] = useState(true);
   const [search, setSearch] = useState("");
-
   const getCurrencies = () => {
     axios
       .get(urlSupportedCurrencies)
@@ -39,19 +38,19 @@ function App() {
       });
   };
 
+  useEffect(() => {
+    getCurrencies();
+    setInterval(() => {
+      getPriceChanges();
+    }, 2000);
+  }, []);
+
   // converting number to rupiah format
   const handleLatestPrice = (price) => {
     return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" })
       .format(price)
       .slice(0, -3);
   };
-
-  useEffect(() => {
-    setInterval(() => {
-      getPriceChanges();
-      getCurrencies();
-    }, 2000);
-  }, []);
 
   return (
     <Layout>
@@ -130,11 +129,11 @@ function App() {
             </div>
           </div>
         </div>
+
+        {/* TOP MOVERS */}
         <div className="pt-4">
           <h2 className="font-bold text-2xl">🔥 Top Movers (24Jam)</h2>
         </div>
-
-        {/* TOP MOVERS */}
         <div className="grid grid-flow-col space-x-5 overflow-auto ">
           {priceChange
             .sort((asc, desc) => Math.abs(desc.day) - Math.abs(asc.day))
@@ -233,6 +232,7 @@ function App() {
             Pelajari lebih lanjut <span className="font-bold text-xl"> → </span>
           </button>
         </div>
+
         {/* PELAJARI LEBIH LANJUT */}
         <div className="grid grid-flow-row lg:grid-cols-3 gap-y-12 gap-10 pt-10">
           {/* 1 */}

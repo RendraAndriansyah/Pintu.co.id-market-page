@@ -1,5 +1,5 @@
 import React from "react";
-const TopMovers = ({ price, movers, name, logo, keys }) => {
+export const TopMovers = ({ price, movers, name, logo, keys }) => {
   return (
     <div className=" pt-4  hover:bg-slate-200 rounded-lg  w-32 lg:w-auto " key={keys}>
       <div className="p-2 ">
@@ -22,5 +22,3 @@ const TopMovers = ({ price, movers, name, logo, keys }) => {
     </div>
   );
 };
-
-export default TopMovers;

@@ -264,7 +264,7 @@ export const Navbar = () => {
                     <a className=" text-lg ">
                       karier
                       <span className="ml-2 bg-blue-600 rounded-lg text-white text-sm py-1 px-2">
-                        We're hiring
+                        We&apos;re hiring
                       </span>
                     </a>
                     <p className="font-normal text-xs text-slate-500">
@@ -280,7 +280,7 @@ export const Navbar = () => {
                     <a className=" text-lg">
                       Karier Engineering
                       <span className="ml-2 bg-blue-600 rounded-lg text-white text-sm py-1 px-2">
-                        We're hiring
+                        We&apos;re hiring
                       </span>
                     </a>
                     <p className="font-normal text-xs text-slate-500">
@@ -646,7 +646,7 @@ export const Navbar = () => {
                       <a className="font-bold text-lg">
                         Karier
                         <span className="badge bg-blue-700 border-none text-white rounded-md mx-1">
-                          We're Hiring!
+                          We&apos;re Hiring!
                         </span>
                         <p className="font-thin text-xs py-1">
                           Temukan pekerjaan impianmu disini
@@ -660,7 +660,7 @@ export const Navbar = () => {
                       <a className="font-bold text-lg">
                         Karier Engineering
                         <span className="badge bg-blue-700 border-none text-white rounded-md mx-1">
-                          We're Hiring!
+                          We&apos;re Hiring!
                         </span>
                         <p className="font-thin text-xs py-1">
                           Bergabung dengan tim engineering kami menciptakan <br />
