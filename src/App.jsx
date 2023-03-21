@@ -8,22 +8,24 @@ import { Navbar } from "./components/Navbar";
 import { TableContent } from "./components/TableContent";
 import { TopMovers } from "./components/TopMovers";
 
+// url API
 const urlSupportedCurrencies = "https://api.pintu.co.id/v2/wallet/supportedCurrencies";
 const urlPriceChanges = "https://api.pintu.co.id/v2/trade/price-changes";
+
 function App() {
   const [currency, setCurrency] = useState([]);
   const [priceChange, setPriceChange] = useState([]);
   const [showInput, setShowInput] = useState(true);
   const [search, setSearch] = useState("");
+
   const getCurrencies = () => {
     axios
       .get(urlSupportedCurrencies)
       .then((response) => {
-        const result = response.data.payload;
-        setCurrency(result);
+        setCurrency(response.data.payload);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err); // jika error ?
       });
   };
 
@@ -45,8 +47,11 @@ function App() {
     }, 2000);
   }, []);
 
-  // converting number to rupiah format
-  const handleLatestPrice = (price) => {
+  /**
+  converting number to format IDR 
+  example : 1238600  => Rp 1.238.600
+  */
+  const convertToIDR = (price) => {
     return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" })
       .format(price)
       .slice(0, -3);
@@ -135,32 +140,38 @@ function App() {
           <h2 className="font-bold text-2xl">🔥 Top Movers (24Jam)</h2>
         </div>
         <div className="grid grid-flow-col space-x-5 overflow-auto ">
-          {priceChange
-            .sort((asc, desc) => Math.abs(desc.day) - Math.abs(asc.day))
-            .slice(0, 6)
-            .map((price, i) => {
-              return (
-                <div key={i}>
-                  {currency
-                    .filter(
-                      (current) =>
-                        current.currencyGroup ===
-                        price.pair.slice(0, price.pair.indexOf("/")).toUpperCase()
-                    )
-                    .map((item) => {
-                      return (
-                        <TopMovers
-                          key={item.name}
-                          price={handleLatestPrice(price.latestPrice)}
-                          movers={price.day}
-                          logo={item.logo}
-                          name={item.name}
-                        />
-                      );
-                    })}
-                </div>
-              );
-            })}
+          {!priceChange.length ? (
+            <div className="flex overflow-hidden justify-center items-baseline space-x-1 animate-pulse ">
+              <p className="text-2xl font-medium text-sky-700">Loading ...</p>
+            </div>
+          ) : (
+            priceChange
+              .sort((asc, desc) => Math.abs(desc.day) - Math.abs(asc.day))
+              .slice(0, 6)
+              .map((price, i) => {
+                return (
+                  <div key={i}>
+                    {currency
+                      .filter(
+                        (current) =>
+                          current.currencyGroup ===
+                          price.pair.slice(0, price.pair.indexOf("/")).toUpperCase()
+                      )
+                      .map((item) => {
+                        return (
+                          <TopMovers
+                            key={item.name}
+                            IDR={convertToIDR(price.latestPrice)}
+                            movers={price.day}
+                            logo={item.logo}
+                            name={item.name}
+                          />
+                        );
+                      })}
+                  </div>
+                );
+              })
+          )}
         </div>
 
         <Category />
@@ -168,8 +179,7 @@ function App() {
         {/* TABLE LIST */}
         <div className="overflow-x-auto pt-5 ">
           <table className=" table  w-full z-0">
-            {/* head desktop*/}
-            <thead className="">
+            <thead>
               <tr className="text-gray-500">
                 <th className="text-base lg:text-center  ">CRYPTO</th>
                 <th className="text-base hidden lg:table-cell w-48 ">HARGA</th>
@@ -200,8 +210,8 @@ function App() {
                             key={item.name}
                             logo={item.logo}
                             name={item.name}
-                            currencyGroup={item.currencyGroup}
-                            latestPrice={handleLatestPrice(price.latestPrice)}
+                            currencyGroup={item.currencyGroIDR}
+                            latestPrice={convertToIDR(price.latestPrice)}
                             dailyPrice={price.day}
                             weeklyPrice={price.week}
                             monthlyPrice={price.month}
@@ -412,6 +422,7 @@ function App() {
             </p>
           </div>
         </div>
+
         <BannerBottom />
         <Footer />
       </div>
