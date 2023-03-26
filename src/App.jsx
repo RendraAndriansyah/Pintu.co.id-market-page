@@ -44,7 +44,7 @@ function App() {
     getCurrencies();
     setInterval(() => {
       getPriceChanges();
-    }, 2000);
+    }, 1500);
   }, []);
 
   /**
